@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.rsg</groupId>
-	<artifactId>framer-to-home-api</artifactId>
+	<artifactId>farmer-to-home-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>framer-to-home-api</name>
+	<name>farmer-to-home-api</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -49,6 +49,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>com.openpojo</groupId>
+			<artifactId>openpojo</artifactId>
+			<version>0.8.3</version>
+			<scope>test</scope>
+		</dependency>		
 	</dependencies>
 
 	<build>

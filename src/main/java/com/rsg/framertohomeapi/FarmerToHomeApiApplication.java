@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FramerToHomeApiApplication {
+public class FarmerToHomeApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FramerToHomeApiApplication.class, args);
+		SpringApplication.run(FarmerToHomeApiApplication.class, args);
 	}
 
 }
