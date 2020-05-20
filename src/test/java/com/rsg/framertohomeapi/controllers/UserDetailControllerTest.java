@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -17,12 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rsg.framertohomeapi.models.UserDetail;
 import com.rsg.framertohomeapi.repositories.UserRepository;
 
@@ -83,7 +86,17 @@ class UserDetailControllerTest {
             .andExpect(jsonPath("$", hasSize(2)))
             .andExpect(jsonPath("$[0].userId",is(1)))
             .andExpect(jsonPath("$[1].email",is("xyz@gmail.com2")));
-        
     }
 
+    @Test
+    public void whenPostingUserGetUserBackAndCreated() throws Exception{
+    	
+    	ObjectMapper Obj = new ObjectMapper();
+    	when(userRepository.saveAndFlush(userDetail1)).thenReturn(userDetail1);
+        mockMvc.perform(post("/api/v1/users").contentType(MediaType.APPLICATION_JSON)
+        		.content(Obj.writeValueAsString(userDetail1)))
+            .andExpect(status().isCreated())
+            .andExpect(jsonPath("$.userId",is(1)))
+            .andExpect(jsonPath("$.email",is("xyz@gmail.com")));
+    }
 }
