@@ -54,7 +54,12 @@
 			<artifactId>openpojo</artifactId>
 			<version>0.8.3</version>
 			<scope>test</scope>
-		</dependency>		
+		</dependency>	
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>	
 	</dependencies>
 
 	<build>
